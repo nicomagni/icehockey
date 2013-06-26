@@ -72,20 +72,49 @@
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     NSLog(@"begin");
+    
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInView: [touch view]];
-    location = [[CCDirector sharedDirector] convertToGL:location];
+    CGSize size = [[CCDirector sharedDirector] winSize];
 
-    _blueHeldMallets.position = location;
+    NSSet *allTouches = [event allTouches];
+    switch ([allTouches count]) {
+        case 1: { //Single touch
+            
+            //Get the first touch.
+            UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
+            CGPoint oldLoc =[self convertTouchToNodeSpace: touch];
+            if(oldLoc.x > size.width / 2){
+                _blueHeldMallets.position = oldLoc;
+            }else{
+                _redHeldMallets.position = oldLoc;
+            }
+            
+        }break;
+        case 2: { //Double Touch
+            UITouch *t1 = [[allTouches allObjects] objectAtIndex:0];
+            UITouch *t2 = [[allTouches allObjects] objectAtIndex:1];
+            CGPoint p1=[self convertTouchToNodeSpace: t1];
+            CGPoint p2=[self convertTouchToNodeSpace: t2];
+            if(p1.x > size.width / 2){
+                _blueHeldMallets.position = p1;
+                _redHeldMallets.position = p2;
+            }else{
+                _blueHeldMallets.position = p2;
+                _redHeldMallets.position = p1;
+            }
+        } break;
+        default:
+            break;
+    }
     
 }
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     NSLog(@"Ended");
 }
+
+
 
 @end
