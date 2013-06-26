@@ -213,8 +213,11 @@
 		84AB5D6C17682937007B0B16 /* cpCCSprite+PhysicsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5D5D17682937007B0B16 /* cpCCSprite+PhysicsEditor.m */; };
 		84AB5D6D17682937007B0B16 /* SpaceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5D5F17682937007B0B16 /* SpaceManager.mm */; };
 		84AB5D711768298E007B0B16 /* GCpShapeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5D701768298E007B0B16 /* GCpShapeCache.m */; };
-		A7DD5D311771E469007476D4 /* GameLayer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = A7DD5D2F1771E469007476D4 /* GameLayer.ccbi */; };
-		A7DD5D321771E469007476D4 /* MenuLayer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = A7DD5D301771E469007476D4 /* MenuLayer.ccbi */; };
+		A74DF043177A499D00FDD138 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A74DF042177A499D00FDD138 /* MainScene.m */; };
+		A74DF069177A58FC00FDD138 /* boton.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF068177A58FC00FDD138 /* boton.png */; };
+		A74DF06C177A683700FDD138 /* boton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF06B177A683700FDD138 /* boton_pressed.png */; };
+		A74DF06F177A685A00FDD138 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A74DF06E177A685A00FDD138 /* GameScene.m */; };
+		A74DF071177A6FAC00FDD138 /* air_hockey_board.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF070177A6FAC00FDD138 /* air_hockey_board.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -637,8 +640,13 @@
 		84AB5D5F17682937007B0B16 /* SpaceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpaceManager.mm; sourceTree = "<group>"; };
 		84AB5D6F1768298E007B0B16 /* GCpShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCpShapeCache.h; sourceTree = "<group>"; };
 		84AB5D701768298E007B0B16 /* GCpShapeCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCpShapeCache.m; sourceTree = "<group>"; };
-		A7DD5D2F1771E469007476D4 /* GameLayer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = GameLayer.ccbi; path = Resources/GameLayer.ccbi; sourceTree = "<group>"; };
-		A7DD5D301771E469007476D4 /* MenuLayer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = MenuLayer.ccbi; path = Resources/MenuLayer.ccbi; sourceTree = "<group>"; };
+		A74DF041177A499D00FDD138 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		A74DF042177A499D00FDD138 /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
+		A74DF068177A58FC00FDD138 /* boton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boton.png; path = Resources/boton.png; sourceTree = "<group>"; };
+		A74DF06B177A683700FDD138 /* boton_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boton_pressed.png; path = Resources/boton_pressed.png; sourceTree = "<group>"; };
+		A74DF06D177A685A00FDD138 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		A74DF06E177A685A00FDD138 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		A74DF070177A6FAC00FDD138 /* air_hockey_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = air_hockey_board.png; path = Resources/air_hockey_board.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -699,12 +707,16 @@
 		84AB5AEB176826B0007B0B16 /* integration */ = {
 			isa = PBXGroup;
 			children = (
+				A74DF06D177A685A00FDD138 /* GameScene.h */,
+				A74DF06E177A685A00FDD138 /* GameScene.m */,
 				84AB5CD5176826B4007B0B16 /* AppDelegate.h */,
 				84AB5CD6176826B4007B0B16 /* AppDelegate.m */,
 				84AB5CD8176826B4007B0B16 /* HelloWorldLayer.h */,
 				84AB5CD9176826B4007B0B16 /* HelloWorldLayer.m */,
 				84AB5CDB176826B4007B0B16 /* IntroLayer.h */,
 				84AB5CDC176826B4007B0B16 /* IntroLayer.m */,
+				A74DF041177A499D00FDD138 /* MainScene.h */,
+				A74DF042177A499D00FDD138 /* MainScene.m */,
 				84AB5AEC176826B0007B0B16 /* Resources */,
 				84AB5B04176826B0007B0B16 /* libs */,
 				84AB5CD1176826B4007B0B16 /* Supporting Files */,
@@ -715,8 +727,9 @@
 		84AB5AEC176826B0007B0B16 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A7DD5D2F1771E469007476D4 /* GameLayer.ccbi */,
-				A7DD5D301771E469007476D4 /* MenuLayer.ccbi */,
+				A74DF070177A6FAC00FDD138 /* air_hockey_board.png */,
+				A74DF06B177A683700FDD138 /* boton_pressed.png */,
+				A74DF068177A58FC00FDD138 /* boton.png */,
 				84AB5AED176826B0007B0B16 /* Default.png */,
 				84AB5AEF176826B0007B0B16 /* Default@2x.png */,
 				84AB5AF1176826B0007B0B16 /* Default-568h@2x.png */,
@@ -1476,8 +1489,9 @@
 				84AB5D371768287A007B0B16 /* README.md in Resources */,
 				84AB5D391768287A007B0B16 /* README.md in Resources */,
 				84AB5D3A1768287A007B0B16 /* LICENSE in Resources */,
-				A7DD5D311771E469007476D4 /* GameLayer.ccbi in Resources */,
-				A7DD5D321771E469007476D4 /* MenuLayer.ccbi in Resources */,
+				A74DF069177A58FC00FDD138 /* boton.png in Resources */,
+				A74DF06C177A683700FDD138 /* boton_pressed.png in Resources */,
+				A74DF071177A6FAC00FDD138 /* air_hockey_board.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1668,6 +1682,8 @@
 				84AB5D6C17682937007B0B16 /* cpCCSprite+PhysicsEditor.m in Sources */,
 				84AB5D6D17682937007B0B16 /* SpaceManager.mm in Sources */,
 				84AB5D711768298E007B0B16 /* GCpShapeCache.m in Sources */,
+				A74DF043177A499D00FDD138 /* MainScene.m in Sources */,
+				A74DF06F177A685A00FDD138 /* GameScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

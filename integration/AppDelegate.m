@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 #import "CCBReader.h"
+#import "MainScene.h"
 
 @implementation MyNavigationController
 
@@ -132,11 +133,9 @@
 	
 	// for rotation and other messages
 	[director_ setDelegate:navController_];
-    CCScene *menuScene = [[CCScene alloc] init];
-    CCNode *menuLayer = [CCBReader nodeGraphFromFile:@"MenuLayer.ccbi"];
-    [menuScene addChild:menuLayer];
-    [director_ pushScene:menuScene];
-	
+//    MainScene *mainScene = [[MainScene alloc] init];
+//    [director_ pushScene:mainScene];
+
 	// set the Navigation Controller as the root view controller
 	[window_ setRootViewController:navController_];
 	
