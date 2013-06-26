@@ -59,6 +59,7 @@
         [self addChild:_puck];
         [self addChild:_blueHeldMallets];
         [self addChild:_redHeldMallets];
+        self.isTouchEnabled = YES;
         
     }
     return self;
@@ -67,6 +68,24 @@
 -(void)resizeSprite:(CCSprite*)sprite toWidth:(float)width toHeight:(float)height {
     sprite.scaleX = width / sprite.contentSize.width;
     sprite.scaleY = height / sprite.contentSize.height;
+}
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"begin");
+}
+
+-(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView: [touch view]];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+
+    _blueHeldMallets.position = location;
+    
+}
+
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"Ended");
 }
 
 @end
