@@ -12,4 +12,9 @@
 @interface GameScene : CCLayer
 
 @end
-CCLabelTTF *_label;
+CCLabelTTF *_redScoreLabel;
+CCLabelTTF *_blueScoreLabel;
+CCSprite *_background;
+CCSprite *_redHeldMallets;
+CCSprite *_blueHeldMallets;
+CCSprite *_puck;

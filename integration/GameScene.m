@@ -41,10 +41,24 @@
 			background = [CCSprite spriteWithFile:@"air_hockey_board.png"];
 		}
 		background.position = ccp(size.width/2, size.height/2);
-        [self resizeSprite:background toWidth:800 toHeight:600 ];
+        [self resizeSprite:background toWidth:size.width toHeight:size.height];
 		
 		// add the label as a child to this Layer
 		[self addChild: background];
+
+
+        _redHeldMallets = [CCSprite spriteWithFile:@"red_held_mallets.png"];
+        _redHeldMallets.position = ccp(40,size.height/2);
+        
+        _blueHeldMallets = [CCSprite spriteWithFile:@"blue_held_mallets.png"];
+        _blueHeldMallets.position = ccp(size.width - 40,size.height/2);
+        
+        _puck = [CCSprite spriteWithFile:@"puck.png"];
+        _puck.position = ccp(size.width/2,size.height/2);
+        
+        [self addChild:_puck];
+        [self addChild:_blueHeldMallets];
+        [self addChild:_redHeldMallets];
         
     }
     return self;

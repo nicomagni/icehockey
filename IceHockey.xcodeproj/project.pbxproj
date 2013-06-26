@@ -217,7 +217,10 @@
 		A74DF069177A58FC00FDD138 /* boton.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF068177A58FC00FDD138 /* boton.png */; };
 		A74DF06C177A683700FDD138 /* boton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF06B177A683700FDD138 /* boton_pressed.png */; };
 		A74DF06F177A685A00FDD138 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A74DF06E177A685A00FDD138 /* GameScene.m */; };
-		A74DF071177A6FAC00FDD138 /* air_hockey_board.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF070177A6FAC00FDD138 /* air_hockey_board.png */; };
+		A74DF079177A7D6300FDD138 /* blue_held_mallets.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF076177A7D6300FDD138 /* blue_held_mallets.png */; };
+		A74DF07A177A7D6300FDD138 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF077177A7D6300FDD138 /* puck.png */; };
+		A74DF07B177A7D6300FDD138 /* red_held_mallets.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF078177A7D6300FDD138 /* red_held_mallets.png */; };
+		A74DF07D177A811C00FDD138 /* air_hockey_board.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF07C177A811C00FDD138 /* air_hockey_board.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -646,7 +649,10 @@
 		A74DF06B177A683700FDD138 /* boton_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boton_pressed.png; path = Resources/boton_pressed.png; sourceTree = "<group>"; };
 		A74DF06D177A685A00FDD138 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		A74DF06E177A685A00FDD138 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
-		A74DF070177A6FAC00FDD138 /* air_hockey_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = air_hockey_board.png; path = Resources/air_hockey_board.png; sourceTree = "<group>"; };
+		A74DF076177A7D6300FDD138 /* blue_held_mallets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_held_mallets.png; path = Resources/blue_held_mallets.png; sourceTree = "<group>"; };
+		A74DF077177A7D6300FDD138 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/puck.png; sourceTree = "<group>"; };
+		A74DF078177A7D6300FDD138 /* red_held_mallets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_held_mallets.png; path = Resources/red_held_mallets.png; sourceTree = "<group>"; };
+		A74DF07C177A811C00FDD138 /* air_hockey_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = air_hockey_board.png; path = Resources/air_hockey_board.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -727,7 +733,10 @@
 		84AB5AEC176826B0007B0B16 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A74DF070177A6FAC00FDD138 /* air_hockey_board.png */,
+				A74DF07C177A811C00FDD138 /* air_hockey_board.png */,
+				A74DF076177A7D6300FDD138 /* blue_held_mallets.png */,
+				A74DF077177A7D6300FDD138 /* puck.png */,
+				A74DF078177A7D6300FDD138 /* red_held_mallets.png */,
 				A74DF06B177A683700FDD138 /* boton_pressed.png */,
 				A74DF068177A58FC00FDD138 /* boton.png */,
 				84AB5AED176826B0007B0B16 /* Default.png */,
@@ -1491,7 +1500,10 @@
 				84AB5D3A1768287A007B0B16 /* LICENSE in Resources */,
 				A74DF069177A58FC00FDD138 /* boton.png in Resources */,
 				A74DF06C177A683700FDD138 /* boton_pressed.png in Resources */,
-				A74DF071177A6FAC00FDD138 /* air_hockey_board.png in Resources */,
+				A74DF079177A7D6300FDD138 /* blue_held_mallets.png in Resources */,
+				A74DF07A177A7D6300FDD138 /* puck.png in Resources */,
+				A74DF07B177A7D6300FDD138 /* red_held_mallets.png in Resources */,
+				A74DF07D177A811C00FDD138 /* air_hockey_board.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
