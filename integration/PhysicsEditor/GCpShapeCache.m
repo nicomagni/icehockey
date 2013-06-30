@@ -83,6 +83,11 @@ static cpFloat area(cpVect *vertices, int numVertices)
 
 @end
 
+typedef enum 
+{
+    GFIXTURE_POLYGON,
+    GFIXTURE_CIRCLE
+} GFixtureType;
 
 /**
  * Fixture definition
@@ -91,6 +96,9 @@ static cpFloat area(cpVect *vertices, int numVertices)
 @interface GFixtureData : NSObject
 {
     @public
+    
+    GFixtureType fixtureType;
+    
     cpFloat mass;
     cpFloat elasticity;
     cpFloat friction;
@@ -106,6 +114,11 @@ static cpFloat area(cpVect *vertices, int numVertices)
     
     BOOL isSensor;
 
+    // for circles
+    cpVect center;
+    cpFloat radius;
+
+    // for polygons
     NSMutableArray *polygons;
 }
 @end
@@ -229,12 +242,10 @@ static cpFloat area(cpVect *vertices, int numVertices)
     // iterate over fixtures
     for(GFixtureData *fd in bd->fixtures)
     {
-        // iterate over polygons 
-        for(GPolygon *p in fd->polygons)
+        if(fd->fixtureType == GFIXTURE_CIRCLE)
         {
-            // create new shape
-            cpShape* shape = cpPolyShapeNew(body, p->numVertices, p->vertices, CGPointZero);
-            
+            cpShape* shape = cpCircleShapeNew(body, fd->radius, fd->center);
+
             // set values
             shape->e = fd->elasticity; 
             shape->u = fd->friction;
@@ -247,6 +258,27 @@ static cpFloat area(cpVect *vertices, int numVertices)
             // add shape to space
             cpSpaceAddShape(space, shape);            
         }
+        else
+        {
+            // iterate over polygons 
+            for(GPolygon *p in fd->polygons)
+            {
+                // create new shape
+                cpShape* shape = cpPolyShapeNew(body, p->numVertices, p->vertices, CGPointZero);
+                
+                // set values
+                shape->e = fd->elasticity; 
+                shape->u = fd->friction;
+                shape->surface_v = fd->surfaceVelocity;
+                shape->collision_type = fd->collisionType;
+                shape->group = fd->group;
+                shape->layers = fd->layers;
+                shape->sensor = fd->isSensor;
+                
+                // add shape to space
+                cpSpaceAddShape(space, shape);            
+            }            
+        }        
     }
     
     return body;
@@ -328,6 +360,8 @@ static cpFloat area(cpVect *vertices, int numVertices)
             {
                 NSArray *polygonsArray = [fixtureData objectForKey:@"polygons"];
                 
+                fd->fixtureType = GFIXTURE_POLYGON;
+                
                 for(NSArray *polygonArray in polygonsArray)
                 {
                     GPolygon *poly = [[[GPolygon alloc] init] autorelease];
@@ -363,9 +397,19 @@ static cpFloat area(cpVect *vertices, int numVertices)
                     totalArea += poly->area;
                 }
             }
+            else if([fixtureType isEqual:@"CIRCLE"])
+            {
+                fd->fixtureType = GFIXTURE_CIRCLE;
+                
+                NSDictionary *circleData = [fixtureData objectForKey:@"circle"];
+
+                fd->radius = [[circleData objectForKey:@"radius"] floatValue];
+                fd->center = CGPointFromString_([circleData objectForKey:@"position"]);
+                totalArea += 3.1415927*fd->radius*fd->radius;
+            }
             else
             {
-                // circles are not yet supported
+                // unknown type
                 assert(0);
             }
     
@@ -376,16 +420,23 @@ static cpFloat area(cpVect *vertices, int numVertices)
     
             if(totalArea)
             {
-                for(GPolygon *p in fd->polygons)
+                if(fd->fixtureType == GFIXTURE_CIRCLE)
                 {
-                    // update mass
-                    p->mass = (p->area * fd->mass) / fd->area;                    
-                    
-                    // calculate momentum
-                    p->momentum = cpMomentForPoly(p->mass, p->numVertices, p->vertices, CGPointZero);
-                    
-                    // calculate total momentum
-                    totalFixtureMomentum += p->momentum;
+                    totalFixtureMomentum += cpMomentForCircle(fd->mass, fd->radius, fd->radius, fd->center);
+                }
+                else
+                {
+                    for(GPolygon *p in fd->polygons)
+                    {
+                        // update mass
+                        p->mass = (p->area * fd->mass) / fd->area;                    
+                        
+                        // calculate momentum
+                        p->momentum = cpMomentForPoly(p->mass, p->numVertices, p->vertices, CGPointZero);
+                        
+                        // calculate total momentum
+                        totalFixtureMomentum += p->momentum;
+                    }                              
                 }                
             }
             fd->momentum = totalFixtureMomentum;
@@ -398,6 +449,72 @@ static cpFloat area(cpVect *vertices, int numVertices)
     }
     
     return TRUE;
+}
+
+-(NSArray *) shapesOfBodyWithName:(NSString*)name withData: (void *) data
+{
+    GBodyDef *bd = [bodyDefs objectForKey:name];
+    NSAssert(bd != 0, @"Body not found");
+    if(!bd)
+    {
+        return nil;
+    }
+    
+    // create and add body to space
+    cpBody *body = cpBodyNew(bd->mass, bd->momentum);
+    
+    // set the center point
+    body->p = bd->anchorPoint;
+    
+    // set the data
+    body->data = data;
+    
+    NSMutableArray *shapes = [NSMutableArray arrayWithCapacity: [bd->fixtures count]];
+    
+    // iterate over fixtures
+    for(GFixtureData *fd in bd->fixtures)
+    {
+        if(fd->fixtureType == GFIXTURE_CIRCLE)
+        {
+            cpShape* shape = cpCircleShapeNew(body, fd->radius, fd->center);
+            
+            // set values
+            shape->e = fd->elasticity; 
+            shape->u = fd->friction;
+            shape->surface_v = fd->surfaceVelocity;
+            shape->collision_type = fd->collisionType;
+            shape->group = fd->group;
+            shape->layers = fd->layers;
+            shape->sensor = fd->isSensor;
+            
+            // add shape to resulting array
+            [shapes addObject: [NSValue valueWithPointer: shape]];
+        }
+        else
+        {
+            // iterate over polygons 
+            for(GPolygon *p in fd->polygons)
+            {
+                // create new shape
+                cpShape* shape = cpPolyShapeNew(body, p->numVertices, p->vertices, CGPointZero);
+                
+                // set values
+                shape->e = fd->elasticity; 
+                shape->u = fd->friction;
+                shape->surface_v = fd->surfaceVelocity;
+                shape->collision_type = fd->collisionType;
+                shape->group = fd->group;
+                shape->layers = fd->layers;
+                shape->sensor = fd->isSensor;
+                
+                // add shape to space
+                [shapes addObject: [NSValue valueWithPointer: shape]];
+                
+            }            
+        }        
+    }
+    
+    return shapes;
 }
 
 @end

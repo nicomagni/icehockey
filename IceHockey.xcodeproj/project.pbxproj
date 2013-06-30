@@ -213,13 +213,20 @@
 		84AB5D6C17682937007B0B16 /* cpCCSprite+PhysicsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5D5D17682937007B0B16 /* cpCCSprite+PhysicsEditor.m */; };
 		84AB5D6D17682937007B0B16 /* SpaceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5D5F17682937007B0B16 /* SpaceManager.mm */; };
 		84AB5D711768298E007B0B16 /* GCpShapeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB5D701768298E007B0B16 /* GCpShapeCache.m */; };
+		A724DD74177F37F600717010 /* Held.m in Sources */ = {isa = PBXBuildFile; fileRef = A724DD73177F37F600717010 /* Held.m */; };
+		A724DD77177FC03A00717010 /* blue_held_mallests_body.plist in Resources */ = {isa = PBXBuildFile; fileRef = A724DD76177FC03A00717010 /* blue_held_mallests_body.plist */; };
+		A724DD9917808F5B00717010 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DD9417808F5B00717010 /* board.png */; };
+		A724DD9A17808F5B00717010 /* board-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DD9517808F5B00717010 /* board-hd.png */; };
+		A724DD9B17808F5B00717010 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DD9617808F5B00717010 /* puck.png */; };
+		A724DD9C17808F5B00717010 /* blue_held_mallets.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DD9717808F5B00717010 /* blue_held_mallets.png */; };
+		A724DD9D17808F5B00717010 /* red_held_mallets.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DD9817808F5B00717010 /* red_held_mallets.png */; };
 		A74DF043177A499D00FDD138 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A74DF042177A499D00FDD138 /* MainScene.m */; };
 		A74DF069177A58FC00FDD138 /* boton.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF068177A58FC00FDD138 /* boton.png */; };
 		A74DF06C177A683700FDD138 /* boton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF06B177A683700FDD138 /* boton_pressed.png */; };
 		A74DF06F177A685A00FDD138 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A74DF06E177A685A00FDD138 /* GameScene.m */; };
-		A74DF079177A7D6300FDD138 /* blue_held_mallets.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF076177A7D6300FDD138 /* blue_held_mallets.png */; };
-		A74DF07A177A7D6300FDD138 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF077177A7D6300FDD138 /* puck.png */; };
-		A74DF07B177A7D6300FDD138 /* red_held_mallets.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF078177A7D6300FDD138 /* red_held_mallets.png */; };
+		A74DF079177A7D6300FDD138 /* blue_held_mallets-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF076177A7D6300FDD138 /* blue_held_mallets-hd.png */; };
+		A74DF07A177A7D6300FDD138 /* puck-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF077177A7D6300FDD138 /* puck-hd.png */; };
+		A74DF07B177A7D6300FDD138 /* red_held_mallets-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF078177A7D6300FDD138 /* red_held_mallets-hd.png */; };
 		A74DF07D177A811C00FDD138 /* air_hockey_board.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF07C177A811C00FDD138 /* air_hockey_board.png */; };
 /* End PBXBuildFile section */
 
@@ -643,15 +650,23 @@
 		84AB5D5F17682937007B0B16 /* SpaceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpaceManager.mm; sourceTree = "<group>"; };
 		84AB5D6F1768298E007B0B16 /* GCpShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCpShapeCache.h; sourceTree = "<group>"; };
 		84AB5D701768298E007B0B16 /* GCpShapeCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCpShapeCache.m; sourceTree = "<group>"; };
+		A724DD72177F37F600717010 /* Held.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Held.h; sourceTree = "<group>"; };
+		A724DD73177F37F600717010 /* Held.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Held.m; sourceTree = "<group>"; };
+		A724DD76177FC03A00717010 /* blue_held_mallests_body.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = blue_held_mallests_body.plist; path = Resources/blue_held_mallests_body.plist; sourceTree = "<group>"; };
+		A724DD9417808F5B00717010 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = board.png; path = Resources/board.png; sourceTree = "<group>"; };
+		A724DD9517808F5B00717010 /* board-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "board-hd.png"; path = "Resources/board-hd.png"; sourceTree = "<group>"; };
+		A724DD9617808F5B00717010 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/puck.png; sourceTree = "<group>"; };
+		A724DD9717808F5B00717010 /* blue_held_mallets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_held_mallets.png; path = Resources/blue_held_mallets.png; sourceTree = "<group>"; };
+		A724DD9817808F5B00717010 /* red_held_mallets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_held_mallets.png; path = Resources/red_held_mallets.png; sourceTree = "<group>"; };
 		A74DF041177A499D00FDD138 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
 		A74DF042177A499D00FDD138 /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
 		A74DF068177A58FC00FDD138 /* boton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boton.png; path = Resources/boton.png; sourceTree = "<group>"; };
 		A74DF06B177A683700FDD138 /* boton_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boton_pressed.png; path = Resources/boton_pressed.png; sourceTree = "<group>"; };
 		A74DF06D177A685A00FDD138 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		A74DF06E177A685A00FDD138 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
-		A74DF076177A7D6300FDD138 /* blue_held_mallets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_held_mallets.png; path = Resources/blue_held_mallets.png; sourceTree = "<group>"; };
-		A74DF077177A7D6300FDD138 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/puck.png; sourceTree = "<group>"; };
-		A74DF078177A7D6300FDD138 /* red_held_mallets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_held_mallets.png; path = Resources/red_held_mallets.png; sourceTree = "<group>"; };
+		A74DF076177A7D6300FDD138 /* blue_held_mallets-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue_held_mallets-hd.png"; path = "Resources/blue_held_mallets-hd.png"; sourceTree = "<group>"; };
+		A74DF077177A7D6300FDD138 /* puck-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "puck-hd.png"; path = "Resources/puck-hd.png"; sourceTree = "<group>"; };
+		A74DF078177A7D6300FDD138 /* red_held_mallets-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red_held_mallets-hd.png"; path = "Resources/red_held_mallets-hd.png"; sourceTree = "<group>"; };
 		A74DF07C177A811C00FDD138 /* air_hockey_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = air_hockey_board.png; path = Resources/air_hockey_board.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -715,6 +730,8 @@
 			children = (
 				A74DF06D177A685A00FDD138 /* GameScene.h */,
 				A74DF06E177A685A00FDD138 /* GameScene.m */,
+				A724DD72177F37F600717010 /* Held.h */,
+				A724DD73177F37F600717010 /* Held.m */,
 				84AB5CD5176826B4007B0B16 /* AppDelegate.h */,
 				84AB5CD6176826B4007B0B16 /* AppDelegate.m */,
 				84AB5CD8176826B4007B0B16 /* HelloWorldLayer.h */,
@@ -733,10 +750,16 @@
 		84AB5AEC176826B0007B0B16 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A724DD9417808F5B00717010 /* board.png */,
+				A724DD9517808F5B00717010 /* board-hd.png */,
+				A724DD9617808F5B00717010 /* puck.png */,
+				A724DD9717808F5B00717010 /* blue_held_mallets.png */,
+				A724DD9817808F5B00717010 /* red_held_mallets.png */,
+				A724DD76177FC03A00717010 /* blue_held_mallests_body.plist */,
 				A74DF07C177A811C00FDD138 /* air_hockey_board.png */,
-				A74DF076177A7D6300FDD138 /* blue_held_mallets.png */,
-				A74DF077177A7D6300FDD138 /* puck.png */,
-				A74DF078177A7D6300FDD138 /* red_held_mallets.png */,
+				A74DF076177A7D6300FDD138 /* blue_held_mallets-hd.png */,
+				A74DF077177A7D6300FDD138 /* puck-hd.png */,
+				A74DF078177A7D6300FDD138 /* red_held_mallets-hd.png */,
 				A74DF06B177A683700FDD138 /* boton_pressed.png */,
 				A74DF068177A58FC00FDD138 /* boton.png */,
 				84AB5AED176826B0007B0B16 /* Default.png */,
@@ -1500,10 +1523,16 @@
 				84AB5D3A1768287A007B0B16 /* LICENSE in Resources */,
 				A74DF069177A58FC00FDD138 /* boton.png in Resources */,
 				A74DF06C177A683700FDD138 /* boton_pressed.png in Resources */,
-				A74DF079177A7D6300FDD138 /* blue_held_mallets.png in Resources */,
-				A74DF07A177A7D6300FDD138 /* puck.png in Resources */,
-				A74DF07B177A7D6300FDD138 /* red_held_mallets.png in Resources */,
+				A74DF079177A7D6300FDD138 /* blue_held_mallets-hd.png in Resources */,
+				A74DF07A177A7D6300FDD138 /* puck-hd.png in Resources */,
+				A74DF07B177A7D6300FDD138 /* red_held_mallets-hd.png in Resources */,
 				A74DF07D177A811C00FDD138 /* air_hockey_board.png in Resources */,
+				A724DD77177FC03A00717010 /* blue_held_mallests_body.plist in Resources */,
+				A724DD9917808F5B00717010 /* board.png in Resources */,
+				A724DD9A17808F5B00717010 /* board-hd.png in Resources */,
+				A724DD9B17808F5B00717010 /* puck.png in Resources */,
+				A724DD9C17808F5B00717010 /* blue_held_mallets.png in Resources */,
+				A724DD9D17808F5B00717010 /* red_held_mallets.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,6 +1725,7 @@
 				84AB5D711768298E007B0B16 /* GCpShapeCache.m in Sources */,
 				A74DF043177A499D00FDD138 /* MainScene.m in Sources */,
 				A74DF06F177A685A00FDD138 /* GameScene.m in Sources */,
+				A724DD74177F37F600717010 /* Held.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
