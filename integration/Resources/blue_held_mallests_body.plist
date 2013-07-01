@@ -19,15 +19,15 @@
 
 					<dict>
                         <key>mass</key>
-                        <real>2</real>
+                        <real>10</real>
                         <key>elasticity</key>
-                        <real>0.3</real>
+                        <real>8</real>
                         <key>friction</key>
-                        <real>0.2</real>
+                        <real>100</real>
                         <key>surface_velocity</key>
-                        <string>{ 0.00000,0.00000 }</string>
+                        <string>{ 10.00000,10.00000 }</string>
                         <key>layers</key>
-                        <integer>7</integer>
+                        <integer>1</integer>
                         <key>group</key>
                         <integer>0</integer>
                         <key>collision_type</key>
@@ -59,15 +59,15 @@
 
 					<dict>
                         <key>mass</key>
-                        <real>2</real>
+                        <real>20</real>
                         <key>elasticity</key>
-                        <real>0</real>
+                        <real>1</real>
                         <key>friction</key>
-                        <real>0</real>
+                        <real>0.1</real>
                         <key>surface_velocity</key>
                         <string>{ 0.00000,0.00000 }</string>
                         <key>layers</key>
-                        <integer>7</integer>
+                        <integer>13</integer>
                         <key>group</key>
                         <integer>0</integer>
                         <key>collision_type</key>
@@ -99,15 +99,15 @@
 
 					<dict>
                         <key>mass</key>
-                        <real>2</real>
+                        <real>200</real>
                         <key>elasticity</key>
-                        <real>0.3</real>
+                        <real>1</real>
                         <key>friction</key>
-                        <real>0.2</real>
+                        <real>0.1</real>
                         <key>surface_velocity</key>
                         <string>{ 0.00000,0.00000 }</string>
                         <key>layers</key>
-                        <integer>7</integer>
+                        <integer>11</integer>
                         <key>group</key>
                         <integer>0</integer>
                         <key>collision_type</key>
@@ -133,7 +133,7 @@
 			<key>board</key>
 			<dict>
 				<key>anchorpoint</key>
-                <string>{ 0.49648,0.50625 }</string>
+                <string>{ 0.49515,0.50313 }</string>
                 <key>fixtures</key>
                 <array>
 
@@ -141,13 +141,13 @@
                         <key>mass</key>
                         <real>1000</real>
                         <key>elasticity</key>
-                        <real>1000</real>
+                        <real>0.2</real>
                         <key>friction</key>
-                        <real>0.3</real>
+                        <real>0</real>
                         <key>surface_velocity</key>
                         <string>{ 0.00000,0.00000 }</string>
                         <key>layers</key>
-                        <integer>1</integer>
+                        <integer>15</integer>
                         <key>group</key>
                         <integer>0</integer>
                         <key>collision_type</key>
@@ -160,10 +160,22 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -282.00000,-164.00000 }</string>	
-								<string>{ -283.00000,159.00000 }</string>	
-								<string>{ 285.00000,159.00000 }</string>	
-								<string>{ 286.00000,-164.00000 }</string>
+								<string>{ -225.67000,-71.00000 }</string>	
+								<string>{ -225.67000,-150.00000 }</string>	
+								<string>{ -373.67000,-283.00000 }</string>	
+								<string>{ -374.67000,-71.00000 }</string>
+							</array>
+							<array>	
+								<string>{ 368.33000,-283.00000 }</string>	
+								<string>{ 229.33000,-152.00000 }</string>	
+								<string>{ 229.33000,-69.00000 }</string>	
+								<string>{ 368.33000,-69.00000 }</string>
+							</array>
+							<array>	
+								<string>{ -225.67000,-150.00000 }</string>	
+								<string>{ 229.33000,-152.00000 }</string>	
+								<string>{ 368.33000,-283.00000 }</string>	
+								<string>{ -373.67000,-283.00000 }</string>
 							</array>
 						</array>
                         
@@ -171,15 +183,15 @@
 
 					<dict>
                         <key>mass</key>
-                        <real>2</real>
+                        <real>1000</real>
                         <key>elasticity</key>
-                        <real>0</real>
+                        <real>0.2</real>
                         <key>friction</key>
                         <real>0</real>
                         <key>surface_velocity</key>
                         <string>{ 0.00000,0.00000 }</string>
                         <key>layers</key>
-                        <integer>0</integer>
+                        <integer>15</integer>
                         <key>group</key>
                         <integer>0</integer>
                         <key>collision_type</key>
@@ -192,10 +204,22 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -282.00000,158.00000 }</string>	
-								<string>{ 286.00000,158.00000 }</string>	
-								<string>{ 286.00000,-162.00000 }</string>	
-								<string>{ -282.00000,-162.00000 }</string>
+								<string>{ -372.67000,270.00000 }</string>	
+								<string>{ -227.67000,150.00000 }</string>	
+								<string>{ -227.67000,69.00000 }</string>	
+								<string>{ -372.67000,69.00000 }</string>
+							</array>
+							<array>	
+								<string>{ 232.33000,66.00000 }</string>	
+								<string>{ 232.33000,150.00000 }</string>	
+								<string>{ 373.33000,271.00000 }</string>	
+								<string>{ 374.33000,66.00000 }</string>
+							</array>
+							<array>	
+								<string>{ -227.67000,150.00000 }</string>	
+								<string>{ -372.67000,270.00000 }</string>	
+								<string>{ 373.33000,271.00000 }</string>	
+								<string>{ 232.33000,150.00000 }</string>
 							</array>
 						</array>
                         

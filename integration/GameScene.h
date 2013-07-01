@@ -16,7 +16,8 @@
 #import "SpaceManagerCocos2d.h"
 #import "cpCCSprite.h"
 
-#import "chipmunk.h"
+
+//#import "chipmunk.h"
 
 @interface GameScene : CCLayer
 {
@@ -27,7 +28,7 @@
     cpCCSprite *_blueHeldMallets;
     cpCCSprite *_puck;
     cpCCSprite *_board;
-
+    CGSize _winSize;
     	
     
 }
@@ -35,10 +36,12 @@
 @property (nonatomic) SpaceManagerCocos2d* spaceManager;
 -(void) initPhysics;
 
-- (int) handleCollisionWithShape:(cpShape*)shape1
+- (BOOL) handleCollisionWithCircle:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
+- (BOOL) handleCollisionWithShape:(cpShape*)shape1
                           shape2:(cpShape*)shape2
                       contactPts:(cpContact*)contacts
                      numContacts:(int)numContacts
                       normalCoef:(cpFloat)coef;
+
 
 @end

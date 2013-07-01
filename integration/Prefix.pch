@@ -11,4 +11,12 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#define HELD_MALLET 1
+#define GOAL 2
+#define PUCK 3
+#define BOARD 4
+#define BLUEPLAYER 5
+#define REDPLAYER 6
+#define MAXVEL 500
+#define INITIALOFFSET 100
 #endif
