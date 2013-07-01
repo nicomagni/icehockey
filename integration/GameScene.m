@@ -175,25 +175,25 @@
     [self addNewSpriteWithName:@"red_held_mallets"];
     [self addNewSpriteWithName:@"puck"];
     
-    
-    
-    [self.spaceManager addCollisionCallbackBetweenType:HELD_MALLET otherType:PUCK target:self selector:@selector(handleCollisionWithCircle:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
-    [self.spaceManager addCollisionCallbackBetweenType:PUCK otherType:GOAL target:self selector:@selector(handleCollisionWithShape:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
-        [self addChild:[self.spaceManager createDebugLayer]];
-
     cpShape *shape;
     cpBody *staticBody = cpBodyNew(INFINITY, INFINITY);
     // left
     shape = cpSegmentShapeNew(staticBody, ccp(0,0), ccp(0,size.height), 0.0f);
     shape->e = 1.0f; shape->u = 1.0f;
     shape->collision_type = GOAL;
+    shape->data = [NSNumber numberWithInt:REDPLAYER];
     cpSpaceAddStaticShape(self.spaceManager.space, shape);
     
     // right
     shape = cpSegmentShapeNew(staticBody, ccp(size.width,0), ccp(size.width,size.height), 0.0f);
     shape->e = 1.0f; shape->u = 1.0f;
         shape->collision_type = GOAL;
+    shape->data = [NSNumber numberWithInt:BLUEPLAYER];
     cpSpaceAddStaticShape(self.spaceManager.space, shape);
+    
+    [self.spaceManager addCollisionCallbackBetweenType:HELD_MALLET otherType:PUCK target:self selector:@selector(handleCollisionWithCircle:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
+    [self.spaceManager addCollisionCallbackBetweenType:GOAL otherType:PUCK target:self selector:@selector(handleCollisionWithShape:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
+    [self addChild:[self.spaceManager createDebugLayer]];
     
     [self.spaceManager start];
 
@@ -218,7 +218,7 @@
     return 1;
 }
 
-- (void) goalHitgoalHitForPalyer:(int)player{
+- (void) goalHitForPalyer:(int)player{
     //add overlay that saids goal!!
     [self resetRoundForPlayer:player];
 }
@@ -226,13 +226,14 @@
 void
 postStepRemove(cpSpace *space, cpShape *shape,id self)
 {
-    [self goalHitForPalyer:BLUEPLAYER];
+    [self goalHitForPalyer:[shape->data intValue]];
 }
 
 - (BOOL) handleCollisionWithShape:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space{
     if(cpArbiterGetDepth(arb, 0) <= -13){
          CP_ARBITER_GET_SHAPES(arb, a, b);
-        cpSpaceAddPostStepCallback(space, (cpPostStepFunc)postStepRemove,b, self);
+        
+        cpSpaceAddPostStepCallback(space, (cpPostStepFunc)postStepRemove,a, self);
         
     }
     return NO;
