@@ -82,9 +82,9 @@
             //Get the first touch.
             UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
             CGPoint oldLoc =[self convertTouchToNodeSpace: touch];
-            if(oldLoc.x > (size.width / 2) + 25){
+            if(oldLoc.x > (size.width / 2) + CENTEROFFSET){
                 _blueHeldMallets.position = oldLoc;
-            }else if(oldLoc.x < (size.width / 2) - 25){
+            }else if(oldLoc.x < (size.width / 2) - CENTEROFFSET){
                 _redHeldMallets.position = oldLoc;
             }
             
@@ -94,10 +94,10 @@
             UITouch *t2 = [[allTouches allObjects] objectAtIndex:1];
             CGPoint p1=[self convertTouchToNodeSpace: t1];
             CGPoint p2=[self convertTouchToNodeSpace: t2];
-            if(p1.x > (size.width / 2) + 25){
+            if(p1.x > (size.width / 2) + CENTEROFFSET){
                 _blueHeldMallets.position = p1;
                 _redHeldMallets.position = p2;
-            }else if(p1.x < (size.width / 2) - 25){
+            }else if(p1.x < (size.width / 2) - CENTEROFFSET){
                 _blueHeldMallets.position = p2;
                 _redHeldMallets.position = p1;
             }
@@ -263,7 +263,13 @@
     [self resetRoundForPlayer:player];
     if([self gameIsFinised]){
         //GAME FINISHED
-        CCScene *winScene = [[WinScene alloc] initWithPlayer:player];
+        int winnner;
+        if(redScore == SCORETOWIN){
+            winnner = REDPLAYER;
+        }else{
+            winnner = BLUEPLAYER;
+        }
+        CCScene *winScene = [[WinScene alloc] initWithPlayer:winnner];
         [[CCDirector sharedDirector] pushScene:winScene];
     }
 }

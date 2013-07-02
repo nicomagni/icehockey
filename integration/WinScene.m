@@ -48,13 +48,13 @@
         [self addChild:_label];
         
         // Create a label for display purposes
-        NSString *player;
+        NSString *playerString;
         if(player == BLUEPLAYER){
-            player = @"Blue Player";
+            playerString = @"Blue Player";
         }else{
-            player = @"Red Player";
+            playerString = @"Red Player";
         }
-        _label = [[CCLabelTTF labelWithString:[NSString stringWithFormat:@"The Player %@ wins", player]
+        _label = [[CCLabelTTF labelWithString:[NSString stringWithFormat:@"The Player %@ wins", playerString]
                                    dimensions:CGSizeMake(420, 50) alignment:UITextAlignmentCenter
                                      fontName:@"Arial" fontSize:32.0] retain];
         _label.position = ccp(winSize.width/2,

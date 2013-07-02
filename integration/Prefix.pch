@@ -19,5 +19,6 @@
 #define REDPLAYER 6
 #define MAXVEL 500
 #define INITIALOFFSET 100
-#define SCORETOWIN 1
+#define SCORETOWIN 7
+#define CENTEROFFSET 20
 #endif
