@@ -19,13 +19,13 @@
 
 					<dict>
                         <key>mass</key>
-                        <real>10</real>
+                        <real>2</real>
                         <key>elasticity</key>
                         <real>8</real>
                         <key>friction</key>
                         <real>100</real>
                         <key>surface_velocity</key>
-                        <string>{ 10.00000,10.00000 }</string>
+                        <string>{ 0.00000,0.00000 }</string>
                         <key>layers</key>
                         <integer>1</integer>
                         <key>group</key>
@@ -160,22 +160,22 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -225.67000,-71.00000 }</string>	
-								<string>{ -225.67000,-150.00000 }</string>	
-								<string>{ -373.67000,-283.00000 }</string>	
-								<string>{ -374.67000,-71.00000 }</string>
+								<string>{ -228.67000,-71.00000 }</string>	
+								<string>{ -228.67000,-150.00000 }</string>	
+								<string>{ -376.67000,-283.00000 }</string>	
+								<string>{ -377.67000,-71.00000 }</string>
 							</array>
 							<array>	
-								<string>{ 368.33000,-283.00000 }</string>	
-								<string>{ 229.33000,-152.00000 }</string>	
-								<string>{ 229.33000,-69.00000 }</string>	
-								<string>{ 368.33000,-69.00000 }</string>
+								<string>{ 365.33000,-283.00000 }</string>	
+								<string>{ 226.33000,-152.00000 }</string>	
+								<string>{ 226.33000,-69.00000 }</string>	
+								<string>{ 365.33000,-69.00000 }</string>
 							</array>
 							<array>	
-								<string>{ -225.67000,-150.00000 }</string>	
-								<string>{ 229.33000,-152.00000 }</string>	
-								<string>{ 368.33000,-283.00000 }</string>	
-								<string>{ -373.67000,-283.00000 }</string>
+								<string>{ -228.67000,-150.00000 }</string>	
+								<string>{ 226.33000,-152.00000 }</string>	
+								<string>{ 365.33000,-283.00000 }</string>	
+								<string>{ -376.67000,-283.00000 }</string>
 							</array>
 						</array>
                         

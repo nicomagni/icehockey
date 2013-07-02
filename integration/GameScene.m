@@ -7,7 +7,7 @@
 //
 
 #import "GameScene.h"
-
+#import "Math.h"
 
 @implementation GameScene
 
@@ -49,7 +49,7 @@
                                               fontName:@"Arial" fontSize:30.0] retain];
         _redScoreLabel.position = ccp((_winSize.width/2) - 30,_winSize.height-47);
         _redScoreLabel.color = ccc3(200, 6, 28);
-        [self addChild:_redScoreLabel z:2];
+        [self addChild:_redScoreLabel z:1];
         
         _isPaused = false;
 		[self initPhysics];
@@ -117,7 +117,7 @@
     cpBodySetVelLimit(_puck.body, MAXVEL);
     [self.spaceManager addBody:_puck.body];
     _puck.shape->collision_type = PUCK;
-        _puck.zOrder = 1;
+        _puck.zOrder = 2;
 }
 
 -(void)initBlueHeldMalletsWithSprite:(cpCCSprite *)ballSprite {
@@ -127,7 +127,7 @@
     [self.spaceManager addBody:_blueHeldMallets.body];
     _blueHeldMallets.position = ccp(_winSize.width - 40,_winSize.height/2);
     _blueHeldMallets.shape->collision_type = HELD_MALLET;
-        _puck.zOrder = 1;
+        _puck.zOrder = 2;
 }
 
 -(void)initRedHeldMalletsWithSprite:(cpCCSprite*)ballSprite {
@@ -138,7 +138,7 @@
     
     _redHeldMallets.position = ccp(40,_winSize.height/2);
     _redHeldMallets.shape->collision_type = HELD_MALLET;
-        _puck.zOrder = 1;
+        _puck.zOrder = 2;
 
 }
 
@@ -202,14 +202,15 @@
     cpShape *shape;
     cpBody *staticBody = cpBodyNew(INFINITY, INFINITY);
     // left
-    shape = cpSegmentShapeNew(staticBody, ccp(0,0), ccp(0,size.height), 0.0f);
+    shape = cpSegmentShapeNew(staticBody, ccp(-100,0), ccp(-100,size.height), 100.0f);
     shape->e = 1.0f; shape->u = 1.0f;
     shape->collision_type = GOAL;
     shape->data = [NSNumber numberWithInt:REDPLAYER];
     cpSpaceAddStaticShape(self.spaceManager.space, shape);
     
     // right
-    shape = cpSegmentShapeNew(staticBody, ccp(size.width,0), ccp(size.width,size.height), 0.0f);
+    shape = cpSegmentShapeNew(staticBody, ccp(size.width + 100,0), ccp(size.width + 100,size.height), 100.0f);
+
     shape->e = 1.0f; shape->u = 1.0f;
         shape->collision_type = GOAL;
     shape->data = [NSNumber numberWithInt:BLUEPLAYER];
@@ -234,9 +235,11 @@
 - (BOOL) handleCollisionWithCircle:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space {
 
     CGPoint result = cpArbiterGetNormal(arb,0);
-    result = ccp(result.x * 20 , result.y * 20);
+    cpFloat depth = cpArbiterGetDepth(arb,0);
+    depth = depth * -2;
+    result = ccp(result.x * depth , result.y * depth);
     [_puck applyImpulse:result];
-    
+    NSLog(@"Normal x = %f y = %f depth %f",result.x, result.y,depth);
     return 1;
 }
 
