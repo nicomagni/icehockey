@@ -8,6 +8,7 @@
 
 #import "GameScene.h"
 #import "Math.h"
+#import "WinScene.h"
 
 @implementation GameScene
 
@@ -262,7 +263,8 @@
     [self resetRoundForPlayer:player];
     if([self gameIsFinised]){
         //GAME FINISHED
-        
+        CCScene *winScene = [[WinScene alloc] initWithPlayer:player];
+        [[CCDirector sharedDirector] pushScene:winScene];
     }
 }
 

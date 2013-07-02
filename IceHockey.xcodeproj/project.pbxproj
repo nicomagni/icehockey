@@ -220,6 +220,10 @@
 		A724DD9B17808F5B00717010 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DD9617808F5B00717010 /* puck.png */; };
 		A724DD9C17808F5B00717010 /* blue_held_mallets.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DD9717808F5B00717010 /* blue_held_mallets.png */; };
 		A724DD9D17808F5B00717010 /* red_held_mallets.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DD9817808F5B00717010 /* red_held_mallets.png */; };
+		A724DDAA17833D9800717010 /* WinScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A724DDA817833D9600717010 /* WinScene.m */; };
+		A724DDAE1783448E00717010 /* initial_board-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DDAB1783448E00717010 /* initial_board-hd.png */; };
+		A724DDAF1783448E00717010 /* initial_board.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DDAC1783448E00717010 /* initial_board.png */; };
+		A724DDB01783448E00717010 /* restartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DDAD1783448E00717010 /* restartButton.png */; };
 		A74DF043177A499D00FDD138 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A74DF042177A499D00FDD138 /* MainScene.m */; };
 		A74DF069177A58FC00FDD138 /* boton.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF068177A58FC00FDD138 /* boton.png */; };
 		A74DF06C177A683700FDD138 /* boton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF06B177A683700FDD138 /* boton_pressed.png */; };
@@ -658,6 +662,11 @@
 		A724DD9617808F5B00717010 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/puck.png; sourceTree = "<group>"; };
 		A724DD9717808F5B00717010 /* blue_held_mallets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_held_mallets.png; path = Resources/blue_held_mallets.png; sourceTree = "<group>"; };
 		A724DD9817808F5B00717010 /* red_held_mallets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_held_mallets.png; path = Resources/red_held_mallets.png; sourceTree = "<group>"; };
+		A724DDA817833D9600717010 /* WinScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinScene.m; sourceTree = "<group>"; };
+		A724DDA917833D9700717010 /* WinScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinScene.h; sourceTree = "<group>"; };
+		A724DDAB1783448E00717010 /* initial_board-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "initial_board-hd.png"; path = "Resources/initial_board-hd.png"; sourceTree = "<group>"; };
+		A724DDAC1783448E00717010 /* initial_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = initial_board.png; path = Resources/initial_board.png; sourceTree = "<group>"; };
+		A724DDAD1783448E00717010 /* restartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = restartButton.png; path = Resources/restartButton.png; sourceTree = "<group>"; };
 		A74DF041177A499D00FDD138 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
 		A74DF042177A499D00FDD138 /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
 		A74DF068177A58FC00FDD138 /* boton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boton.png; path = Resources/boton.png; sourceTree = "<group>"; };
@@ -728,6 +737,8 @@
 		84AB5AEB176826B0007B0B16 /* integration */ = {
 			isa = PBXGroup;
 			children = (
+				A724DDA817833D9600717010 /* WinScene.m */,
+				A724DDA917833D9700717010 /* WinScene.h */,
 				A74DF06D177A685A00FDD138 /* GameScene.h */,
 				A74DF06E177A685A00FDD138 /* GameScene.m */,
 				A724DD72177F37F600717010 /* Held.h */,
@@ -750,6 +761,9 @@
 		84AB5AEC176826B0007B0B16 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A724DDAB1783448E00717010 /* initial_board-hd.png */,
+				A724DDAC1783448E00717010 /* initial_board.png */,
+				A724DDAD1783448E00717010 /* restartButton.png */,
 				A724DD9417808F5B00717010 /* board.png */,
 				A724DD9517808F5B00717010 /* board-hd.png */,
 				A724DD9617808F5B00717010 /* puck.png */,
@@ -1533,6 +1547,9 @@
 				A724DD9B17808F5B00717010 /* puck.png in Resources */,
 				A724DD9C17808F5B00717010 /* blue_held_mallets.png in Resources */,
 				A724DD9D17808F5B00717010 /* red_held_mallets.png in Resources */,
+				A724DDAE1783448E00717010 /* initial_board-hd.png in Resources */,
+				A724DDAF1783448E00717010 /* initial_board.png in Resources */,
+				A724DDB01783448E00717010 /* restartButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1726,6 +1743,7 @@
 				A74DF043177A499D00FDD138 /* MainScene.m in Sources */,
 				A74DF06F177A685A00FDD138 /* GameScene.m in Sources */,
 				A724DD74177F37F600717010 /* Held.m in Sources */,
+				A724DDAA17833D9800717010 /* WinScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
