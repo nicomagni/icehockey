@@ -29,6 +29,9 @@
     cpCCSprite *_puck;
     cpCCSprite *_board;
     CGSize _winSize;
+    int blueScore;
+    int redScore;
+    BOOL _isPaused;
     	
     
 }

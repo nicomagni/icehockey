@@ -34,6 +34,24 @@
         self.isTouchEnabled = YES;
         // init physics
         _winSize = [[CCDirector sharedDirector] winSize];
+        redScore = 0;
+        blueScore = 0;
+        
+        _blueScoreLabel = [[CCLabelTTF labelWithString:@"00"
+                                   dimensions:CGSizeMake(50, 50) alignment:UITextAlignmentCenter
+                                     fontName:@"Arial" fontSize:30.0] retain];
+        _blueScoreLabel.position = ccp((_winSize.width/2) + 30,_winSize.height-47);
+        _blueScoreLabel.color = ccc3(200, 6, 28);
+        [self addChild:_blueScoreLabel z:2];
+
+        _redScoreLabel = [[CCLabelTTF labelWithString:@"00"
+                                            dimensions:CGSizeMake(50, 50) alignment:UITextAlignmentCenter
+                                              fontName:@"Arial" fontSize:30.0] retain];
+        _redScoreLabel.position = ccp((_winSize.width/2) - 30,_winSize.height-47);
+        _redScoreLabel.color = ccc3(200, 6, 28);
+        [self addChild:_redScoreLabel z:2];
+        
+        _isPaused = false;
 		[self initPhysics];
         
     }
@@ -54,6 +72,9 @@
     CGSize size = [[CCDirector sharedDirector] winSize];
 
     NSSet *allTouches = [event allTouches];
+    if(_isPaused){
+        return;
+    }
     switch ([allTouches count]) {
         case 1: { //Single touch
             
@@ -96,6 +117,7 @@
     cpBodySetVelLimit(_puck.body, MAXVEL);
     [self.spaceManager addBody:_puck.body];
     _puck.shape->collision_type = PUCK;
+        _puck.zOrder = 1;
 }
 
 -(void)initBlueHeldMalletsWithSprite:(cpCCSprite *)ballSprite {
@@ -105,6 +127,7 @@
     [self.spaceManager addBody:_blueHeldMallets.body];
     _blueHeldMallets.position = ccp(_winSize.width - 40,_winSize.height/2);
     _blueHeldMallets.shape->collision_type = HELD_MALLET;
+        _puck.zOrder = 1;
 }
 
 -(void)initRedHeldMalletsWithSprite:(cpCCSprite*)ballSprite {
@@ -115,6 +138,7 @@
     
     _redHeldMallets.position = ccp(40,_winSize.height/2);
     _redHeldMallets.shape->collision_type = HELD_MALLET;
+        _puck.zOrder = 1;
 
 }
 
@@ -127,6 +151,7 @@
     
     _board.position = ccp(_winSize.width/2,_winSize.height/2);
     _board.shape->collision_type = BOARD;
+    _puck.zOrder = 0;
 }
 
 -(void)resetRoundForPlayer:(int)player{
@@ -136,13 +161,12 @@
     }else{
         initailPosition = ccp(_winSize.width/2 - INITIALOFFSET,_winSize.height/2);
     }
-    
-
     cpBodyResetForces(_puck.body);
     _puck.body->v = cpvzero; _puck.body->w = 0.0f;
     _puck.position = initailPosition;
     _blueHeldMallets.position = ccp(_winSize.width - 40,_winSize.height/2);
     _redHeldMallets.position = ccp(40,_winSize.height/2);
+
 
 }
 
@@ -209,23 +233,41 @@
 
 - (BOOL) handleCollisionWithCircle:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space {
 
-    if(moment == COLLISION_PRESOLVE){
-        CGPoint result = cpArbiterGetNormal(arb,0);
-        result = ccp(result.x * 20 , result.y * 20);
-        [_puck applyImpulse:result];
-    }
+    CGPoint result = cpArbiterGetNormal(arb,0);
+    result = ccp(result.x * 20 , result.y * 20);
+    [_puck applyImpulse:result];
     
     return 1;
 }
 
+-(BOOL) gameIsFinised{
+    return redScore == SCORETOWIN || blueScore == SCORETOWIN;
+}
+
 - (void) goalHitForPalyer:(int)player{
     //add overlay that saids goal!!
+    switch (player) {
+        case BLUEPLAYER:
+            redScore++;
+            break;
+        case REDPLAYER:
+            blueScore++;
+            break;
+    }
+    [_redScoreLabel setString:[NSString stringWithFormat:@"%02d",redScore]];
+    [_blueScoreLabel setString:[NSString stringWithFormat:@"%02d",blueScore]];
+    
     [self resetRoundForPlayer:player];
+    if([self gameIsFinised]){
+        //GAME FINISHED
+        
+    }
 }
 
 void
 postStepRemove(cpSpace *space, cpShape *shape,id self)
 {
+    
     [self goalHitForPalyer:[shape->data intValue]];
 }
 
