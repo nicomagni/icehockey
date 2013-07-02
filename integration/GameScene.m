@@ -81,9 +81,9 @@
             //Get the first touch.
             UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
             CGPoint oldLoc =[self convertTouchToNodeSpace: touch];
-            if(oldLoc.x > size.width / 2){
+            if(oldLoc.x > (size.width / 2) + 25){
                 _blueHeldMallets.position = oldLoc;
-            }else{
+            }else if(oldLoc.x < (size.width / 2) - 25){
                 _redHeldMallets.position = oldLoc;
             }
             
@@ -93,10 +93,10 @@
             UITouch *t2 = [[allTouches allObjects] objectAtIndex:1];
             CGPoint p1=[self convertTouchToNodeSpace: t1];
             CGPoint p2=[self convertTouchToNodeSpace: t2];
-            if(p1.x > size.width / 2){
+            if(p1.x > (size.width / 2) + 25){
                 _blueHeldMallets.position = p1;
                 _redHeldMallets.position = p2;
-            }else{
+            }else if(p1.x < (size.width / 2) - 25){
                 _blueHeldMallets.position = p2;
                 _redHeldMallets.position = p1;
             }
@@ -202,14 +202,14 @@
     cpShape *shape;
     cpBody *staticBody = cpBodyNew(INFINITY, INFINITY);
     // left
-    shape = cpSegmentShapeNew(staticBody, ccp(-100,0), ccp(-100,size.height), 100.0f);
+    shape = cpSegmentShapeNew(staticBody, ccp(-600,0), ccp(-600,size.height), 600.0f);
     shape->e = 1.0f; shape->u = 1.0f;
     shape->collision_type = GOAL;
     shape->data = [NSNumber numberWithInt:REDPLAYER];
     cpSpaceAddStaticShape(self.spaceManager.space, shape);
     
     // right
-    shape = cpSegmentShapeNew(staticBody, ccp(size.width + 100,0), ccp(size.width + 100,size.height), 100.0f);
+    shape = cpSegmentShapeNew(staticBody, ccp(size.width + 600,0), ccp(size.width + 600,size.height), 600.0f);
 
     shape->e = 1.0f; shape->u = 1.0f;
         shape->collision_type = GOAL;
@@ -235,8 +235,7 @@
 - (BOOL) handleCollisionWithCircle:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space {
 
     CGPoint result = cpArbiterGetNormal(arb,0);
-    cpFloat depth = cpArbiterGetDepth(arb,0);
-    depth = depth * -2;
+    cpFloat depth = cpArbiterGetDepth(arb,0) * -2;
     result = ccp(result.x * depth , result.y * depth);
     [_puck applyImpulse:result];
     NSLog(@"Normal x = %f y = %f depth %f",result.x, result.y,depth);

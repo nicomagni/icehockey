@@ -35,7 +35,7 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Create a label for display purposes
-        _label = [[CCLabelTTF labelWithString:@"Last button: None"
+        _label = [[CCLabelTTF labelWithString:@"Welcome to Air Hockey"
                                    dimensions:CGSizeMake(320, 50) alignment:UITextAlignmentCenter
                                      fontName:@"Arial" fontSize:32.0] retain];
         _label.position = ccp(winSize.width/2,
