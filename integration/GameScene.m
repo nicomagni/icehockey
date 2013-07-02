@@ -116,6 +116,7 @@
     _puck.position = ccp(_winSize.width/2,_winSize.height/2);
     [self.spaceManager removeBody:_puck.body];
     cpBodySetVelLimit(_puck.body, MAXVEL);
+
     [self.spaceManager addBody:_puck.body];
     _puck.shape->collision_type = PUCK;
         _puck.zOrder = 2;
@@ -142,6 +143,8 @@
         _puck.zOrder = 2;
 
 }
+
+
 
 -(void)initBoardWithSprite:(cpCCSprite*)ballSprite {
     _board = ballSprite;
@@ -192,6 +195,9 @@
 {
     CGSize size = [[CCDirector sharedDirector] winSize];
     self.spaceManager = [[SpaceManagerCocos2d alloc] init];
+    [[[CCDirector sharedDirector] scheduler] scheduleUpdateForTarget:self priority:1 paused:NO];
+    
+//    self.spaceManager.steps = 3;
 
     [self.spaceManager setGravity:ccp(0,0)];
     [[GCpShapeCache sharedShapeCache] addShapesWithFile:@"blue_held_mallests_body.plist"];
@@ -220,8 +226,22 @@
     [self.spaceManager addCollisionCallbackBetweenType:HELD_MALLET otherType:PUCK target:self selector:@selector(handleCollisionWithCircle:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
     [self.spaceManager addCollisionCallbackBetweenType:GOAL otherType:PUCK target:self selector:@selector(handleCollisionWithShape:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
     [self addChild:[self.spaceManager createDebugLayer]];
-    
+    cpSpaceSetDamping(self.spaceManager, 1);
     [self.spaceManager start];
+    
+}
+
+- (void) update:(ccTime)delta{
+
+    cpVect vel = ccp(_puck.body->v.x, _puck.body->v.y );
+            NSLog(@"X = %d Y = %d", vel.x, vel.y);
+    if(vel.x > FLT_MIN && vel.y > FLT_MIN){
+        cpBodySetVel(_puck.body, ccp(vel.x - 0.4, vel.y - 0.4));
+    }else{
+
+
+        
+    }
 
 }
 
@@ -236,10 +256,15 @@
 - (BOOL) handleCollisionWithCircle:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space {
 
     CGPoint result = cpArbiterGetNormal(arb,0);
-    cpFloat depth = cpArbiterGetDepth(arb,0) * -2;
-    result = ccp(result.x * depth , result.y * depth);
+    CP_ARBITER_GET_BODIES(arb, a, b);
+    cpVect auxB = cpBodyGetVel(b);
+    float velocity = sqrtf(powf(auxB.x, 2) + powf(auxB.y, 2));
+//    float nomaelVel = 30000/(velocity + 1);
+    
+    result = ccp(result.x * 4000, result.y* 4000);
     [_puck applyImpulse:result];
-    NSLog(@"Normal x = %f y = %f depth %f",result.x, result.y,depth);
+
+        NSLog(@"PUCK Velocity in X = %f in Y = %f",auxB.x, auxB.y);
     return 1;
 }
 
