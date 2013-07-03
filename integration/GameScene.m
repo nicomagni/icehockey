@@ -226,7 +226,7 @@
     [self.spaceManager addCollisionCallbackBetweenType:HELD_MALLET otherType:PUCK target:self selector:@selector(handleCollisionWithCircle:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
     [self.spaceManager addCollisionCallbackBetweenType:GOAL otherType:PUCK target:self selector:@selector(handleCollisionWithShape:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
     [self addChild:[self.spaceManager createDebugLayer]];
-    cpSpaceSetDamping(self.spaceManager, 1);
+
     [self.spaceManager start];
     
 }
@@ -234,15 +234,9 @@
 - (void) update:(ccTime)delta{
 
     cpVect vel = ccp(_puck.body->v.x, _puck.body->v.y );
-            NSLog(@"X = %d Y = %d", vel.x, vel.y);
     if(vel.x > FLT_MIN && vel.y > FLT_MIN){
-        cpBodySetVel(_puck.body, ccp(vel.x - 0.4, vel.y - 0.4));
-    }else{
-
-
-        
+        cpBodySetVel(_puck.body, ccp(vel.x -4, vel.y - 4));
     }
-
 }
 
 - (void)dealloc

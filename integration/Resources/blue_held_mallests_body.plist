@@ -19,7 +19,7 @@
 					<key>mass</key>
 					<real>10</real>
 					<key>elasticity</key>
-					<integer>2</integer>
+					<integer>1</integer>
 					<key>friction</key>
 					<real>0</real>
 					<key>surface_velocity</key>
@@ -54,7 +54,7 @@
 					<key>mass</key>
 					<real>20</real>
 					<key>elasticity</key>
-					<real>0.5</real>
+					<integer>1</integer>
 					<key>friction</key>
 					<real>0</real>
 					<key>surface_velocity</key>
@@ -89,7 +89,7 @@
 					<key>mass</key>
 					<real>20</real>
 					<key>elasticity</key>
-					<real>0.5</real>
+					<integer>1</integer>
 					<key>friction</key>
 					<real>0</real>
 					<key>surface_velocity</key>
