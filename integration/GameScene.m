@@ -37,6 +37,8 @@
         _winSize = [[CCDirector sharedDirector] winSize];
         redScore = 0;
         blueScore = 0;
+        redMouseBody = cpBodyNew(INFINITY, INFINITY);
+        blueMouseBody= cpBodyNew(INFINITY, INFINITY);
         
         _blueScoreLabel = [[CCLabelTTF labelWithString:@"00"
                                    dimensions:CGSizeMake(50, 50) alignment:UITextAlignmentCenter
@@ -53,6 +55,8 @@
         [self addChild:_redScoreLabel z:1];
         
         _isPaused = false;
+        
+
 		[self initPhysics];
         
     }
@@ -65,13 +69,7 @@
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-
-    
-}
-
--(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     CGSize size = [[CCDirector sharedDirector] winSize];
-
     NSSet *allTouches = [event allTouches];
     if(_isPaused){
         return;
@@ -84,8 +82,10 @@
             CGPoint oldLoc =[self convertTouchToNodeSpace: touch];
             if(oldLoc.x > (size.width / 2) + CENTEROFFSET){
                 _blueHeldMallets.position = oldLoc;
+
             }else if(oldLoc.x < (size.width / 2) - CENTEROFFSET){
                 _redHeldMallets.position = oldLoc;
+                
             }
             
         }break;
@@ -105,10 +105,82 @@
         default:
             break;
     }
+
     
 }
 
+-(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGSize size = [[CCDirector sharedDirector] winSize];
+
+    NSSet *allTouches = [event allTouches];
+    if(_isPaused){
+        return;
+    }
+    switch ([allTouches count]) {
+        case 1: { //Single touch
+            
+            //Get the first touch.
+            UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
+            CGPoint oldLoc =[self convertTouchToNodeSpace: touch];
+            if(oldLoc.x > (size.width / 2) + CENTEROFFSET){
+
+                blueMouseBody->p = oldLoc;
+                blueMouseJoint = cpPivotJointNew2(blueMouseBody, _blueHeldMallets.body, cpvzero, cpvzero);
+                blueMouseJoint->maxForce = 10000.0f;
+                blueMouseJoint->errorBias = cpfpow(1.0f - 0.15f, 60.0f);
+                cpSpaceAddConstraint(self.spaceManager.space, blueMouseJoint);
+            }else if(oldLoc.x < (size.width / 2) - CENTEROFFSET){
+
+                redMouseBody->p = oldLoc;
+                redMouseJoint = cpPivotJointNew2(redMouseBody, _redHeldMallets.body, cpvzero, cpvzero);
+                redMouseJoint->maxForce = 10000.0f;
+                redMouseJoint->errorBias = cpfpow(1.0f - 0.15f, 60.0f);
+                cpSpaceAddConstraint(self.spaceManager.space, redMouseJoint);
+                
+                
+            }
+
+            
+        }break;
+        case 2: { //Double Touch
+            UITouch *t1 = [[allTouches allObjects] objectAtIndex:0];
+            UITouch *t2 = [[allTouches allObjects] objectAtIndex:1];
+            CGPoint p1=[self convertTouchToNodeSpace: t1];
+            CGPoint p2=[self convertTouchToNodeSpace: t2];
+            if(p1.x > (size.width / 2) + CENTEROFFSET){
+                redMouseBody->p = p2;
+                blueMouseBody->p = p1;
+            }else if(p1.x < (size.width / 2) - CENTEROFFSET){
+                redMouseBody->p = p1;
+                blueMouseBody->p = p2;
+
+            }
+            redMouseJoint = cpPivotJointNew2(redMouseBody, _redHeldMallets.body, cpvzero, cpvzero);
+            redMouseJoint->maxForce = 10000.0f;
+            redMouseJoint->errorBias = cpfpow(1.0f - 0.15f, 60.0f);
+            cpSpaceAddConstraint(self.spaceManager.space, redMouseJoint);
+            blueMouseJoint = cpPivotJointNew2(blueMouseBody, _blueHeldMallets.body, cpvzero, cpvzero);
+            blueMouseJoint->maxForce = 10000.0f;
+            blueMouseJoint->errorBias = cpfpow(1.0f - 0.15f, 60.0f);
+            cpSpaceAddConstraint(self.spaceManager.space, blueMouseJoint);
+
+        } break;
+        default:
+            break;
+    }
+    
+}
+
+
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+        cpBodyResetForces(_redHeldMallets.body);
+            cpBodyResetForces(_blueHeldMallets.body);
+            cpBodySetVel(_redHeldMallets.body, ccp(0, 0));
+            cpBodySetVel(_blueHeldMallets.body, ccp(0, 0));
+    cpBodySetAngVel(_redHeldMallets.body, 0);
+        cpBodySetAngVel(_blueHeldMallets.body, 0);
+
+
 }
 
 -(void)initPuckWithSprite:(cpCCSprite *)ballSprite {
@@ -125,22 +197,22 @@
 -(void)initBlueHeldMalletsWithSprite:(cpCCSprite *)ballSprite {
     _blueHeldMallets = ballSprite;
     [self.spaceManager removeBody:_blueHeldMallets.body];
-    cpBodySetMass(_blueHeldMallets.body,STATIC_MASS);
+  //  cpBodySetMass(_blueHeldMallets.body,STATIC_MASS);
     [self.spaceManager addBody:_blueHeldMallets.body];
     _blueHeldMallets.position = ccp(_winSize.width - 40,_winSize.height/2);
     _blueHeldMallets.shape->collision_type = HELD_MALLET;
-        _puck.zOrder = 2;
+        _blueHeldMallets.zOrder = 2;
 }
 
 -(void)initRedHeldMalletsWithSprite:(cpCCSprite*)ballSprite {
     _redHeldMallets = ballSprite;
     [self.spaceManager removeBody:_redHeldMallets.body];
-    cpBodySetMass(_redHeldMallets.body,STATIC_MASS);
+//    cpBodySetMass(_redHeldMallets.body,STATIC_MASS);
     [self.spaceManager addBody:_redHeldMallets.body];
     
     _redHeldMallets.position = ccp(40,_winSize.height/2);
     _redHeldMallets.shape->collision_type = HELD_MALLET;
-        _puck.zOrder = 2;
+        _redHeldMallets.zOrder = 2;
 
 }
 
@@ -155,7 +227,7 @@
     
     _board.position = ccp(_winSize.width/2,_winSize.height/2);
     _board.shape->collision_type = BOARD;
-    _puck.zOrder = 0;
+    _board.zOrder = 0;
 }
 
 -(void)resetRoundForPlayer:(int)player{
@@ -233,10 +305,25 @@
 
 - (void) update:(ccTime)delta{
 
-    cpVect vel = ccp(_puck.body->v.x, _puck.body->v.y );
-    if(vel.x > FLT_MIN && vel.y > FLT_MIN){
-        cpBodySetVel(_puck.body, ccp(vel.x -4, vel.y - 4));
-    }
+//    cpVect vel = ccp(_puck.body->v.x, _puck.body->v.y );
+//    if(vel.x > FLT_MIN && vel.y > FLT_MIN){
+//        cpBodySetVel(_puck.body, ccp(vel.x -4, vel.y - 4));
+//    }
+    cpBodySetAngVel(_redHeldMallets.body, 0);
+    cpBodySetAngVel(_blueHeldMallets.body, 0);
+//    CGPoint directionVectRed = [self directionForceToPosition:newLocationForRed];
+//    if(directionVectRed.x == 0 && directionVectRed.y == 0){
+//        cpBodyResetForces(_redHeldMallets.body);
+//        cpBodySetVel(_redHeldMallets.body, ccp(0, 0));
+//
+//        //                    _redHeldMallets.position = oldLoc;
+//    }else{
+//        [_redHeldMallets applyImpulse:directionVectRed];
+//        
+//
+//    }
+    
+
 }
 
 - (void)dealloc
@@ -251,14 +338,14 @@
 
     CGPoint result = cpArbiterGetNormal(arb,0);
     CP_ARBITER_GET_BODIES(arb, a, b);
-    cpVect auxB = cpBodyGetVel(b);
+    cpVect auxB = cpBodyGetVel(a);
     float velocity = sqrtf(powf(auxB.x, 2) + powf(auxB.y, 2));
 //    float nomaelVel = 30000/(velocity + 1);
     
     result = ccp(result.x * 4000, result.y* 4000);
     [_puck applyImpulse:result];
 
-        NSLog(@"PUCK Velocity in X = %f in Y = %f",auxB.x, auxB.y);
+//        NSLog(@"PUCK Velocity in X = %f in Y = %f",auxB.x, auxB.y);
     return 1;
 }
 

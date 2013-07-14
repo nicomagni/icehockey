@@ -232,6 +232,7 @@
 		A74DF07A177A7D6300FDD138 /* puck-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF077177A7D6300FDD138 /* puck-hd.png */; };
 		A74DF07B177A7D6300FDD138 /* red_held_mallets-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF078177A7D6300FDD138 /* red_held_mallets-hd.png */; };
 		A74DF07D177A811C00FDD138 /* air_hockey_board.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF07C177A811C00FDD138 /* air_hockey_board.png */; };
+		A7BE634C1792EF1600809668 /* Puck.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BE634B1792EF1600809668 /* Puck.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -677,6 +678,8 @@
 		A74DF077177A7D6300FDD138 /* puck-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "puck-hd.png"; path = "Resources/puck-hd.png"; sourceTree = "<group>"; };
 		A74DF078177A7D6300FDD138 /* red_held_mallets-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red_held_mallets-hd.png"; path = "Resources/red_held_mallets-hd.png"; sourceTree = "<group>"; };
 		A74DF07C177A811C00FDD138 /* air_hockey_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = air_hockey_board.png; path = Resources/air_hockey_board.png; sourceTree = "<group>"; };
+		A7BE634A1792EF1600809668 /* Puck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Puck.h; path = model/Puck.h; sourceTree = "<group>"; };
+		A7BE634B1792EF1600809668 /* Puck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Puck.m; path = model/Puck.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -737,6 +740,7 @@
 		84AB5AEB176826B0007B0B16 /* integration */ = {
 			isa = PBXGroup;
 			children = (
+				A7BE63491792EEEE00809668 /* model */,
 				A724DDA817833D9600717010 /* WinScene.m */,
 				A724DDA917833D9700717010 /* WinScene.h */,
 				A74DF06D177A685A00FDD138 /* GameScene.h */,
@@ -1468,6 +1472,15 @@
 			path = PhysicsEditor;
 			sourceTree = "<group>";
 		};
+		A7BE63491792EEEE00809668 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A7BE634A1792EF1600809668 /* Puck.h */,
+				A7BE634B1792EF1600809668 /* Puck.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1744,6 +1757,7 @@
 				A74DF06F177A685A00FDD138 /* GameScene.m in Sources */,
 				A724DD74177F37F600717010 /* Held.m in Sources */,
 				A724DDAA17833D9800717010 /* WinScene.m in Sources */,
+				A7BE634C1792EF1600809668 /* Puck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,4 +21,5 @@
 #define INITIALOFFSET 100
 #define SCORETOWIN 7
 #define CENTEROFFSET 20
+#define ERRORRANGE 0.5
 #endif
