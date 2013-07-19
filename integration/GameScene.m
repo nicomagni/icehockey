@@ -37,8 +37,8 @@
         _winSize = [[CCDirector sharedDirector] winSize];
         redScore = 0;
         blueScore = 0;
-        redMouseBody = cpBodyNew(INFINITY, INFINITY);
-        blueMouseBody= cpBodyNew(INFINITY, INFINITY);
+        _redMouseBody = cpBodyNew(INFINITY, INFINITY);
+        _blueMouseBody= cpBodyNew(INFINITY, INFINITY);
         
         _blueScoreLabel = [[CCLabelTTF labelWithString:@"00"
                                    dimensions:CGSizeMake(50, 50) alignment:UITextAlignmentCenter
@@ -69,7 +69,9 @@
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"BEgan");
     CGSize size = [[CCDirector sharedDirector] winSize];
+
     NSSet *allTouches = [event allTouches];
     if(_isPaused){
         return;
@@ -81,12 +83,15 @@
             UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
             CGPoint oldLoc =[self convertTouchToNodeSpace: touch];
             if(oldLoc.x > (size.width / 2) + CENTEROFFSET){
-                _blueHeldMallets.position = oldLoc;
+                
+                _blueMouseBody->p = oldLoc;
 
             }else if(oldLoc.x < (size.width / 2) - CENTEROFFSET){
-                _redHeldMallets.position = oldLoc;
+                
+                _redMouseBody->p = oldLoc;
                 
             }
+            
             
         }break;
         case 2: { //Double Touch
@@ -94,13 +99,27 @@
             UITouch *t2 = [[allTouches allObjects] objectAtIndex:1];
             CGPoint p1=[self convertTouchToNodeSpace: t1];
             CGPoint p2=[self convertTouchToNodeSpace: t2];
-            if(p1.x > (size.width / 2) + CENTEROFFSET){
-                _blueHeldMallets.position = p1;
-                _redHeldMallets.position = p2;
-            }else if(p1.x < (size.width / 2) - CENTEROFFSET){
-                _blueHeldMallets.position = p2;
-                _redHeldMallets.position = p1;
+            if(p1.x > (size.width / 2) + CENTEROFFSET && p2.x < (size.width / 2) - CENTEROFFSET){
+                _redMouseBody->p = p2;
+                _blueMouseBody->p = p1;
+            }else if(p1.x < (size.width / 2) - CENTEROFFSET && p2.x > (size.width / 2) + CENTEROFFSET){
+                _redMouseBody->p = p1;
+                _blueMouseBody->p = p2;
+                
+            }else if(p1.x < (size.width / 2) - CENTEROFFSET && p2.x < (size.width / 2) - CENTEROFFSET){
+                _redMouseBody->p = p1.x >= p2.x ? p2:p1;
+            }else if(p1.x > (size.width / 2) + CENTEROFFSET && p2.x > (size.width / 2) + CENTEROFFSET){
+                _blueMouseBody->p = p1.x >= p2.x ? p2:p1;
             }
+//            redMouseJoint = cpPivotJointNew2(_redMouseBody, _redHeldMallets.body, cpvzero, cpvzero);
+//            redMouseJoint->maxForce = 1000000.0f;
+//            redMouseJoint->errorBias = cpfpow(1.0f - 0.37f, 60.0f);
+//            cpSpaceAddConstraint(self.spaceManager.space, redMouseJoint);
+//            blueMouseJoint = cpPivotJointNew2(_blueMouseBody, _blueHeldMallets.body, cpvzero, cpvzero);
+//            blueMouseJoint->maxForce = 1000000.0f;
+//            blueMouseJoint->errorBias = cpfpow(1.0f - 0.37f, 60.0f);
+//            cpSpaceAddConstraint(self.spaceManager.space, blueMouseJoint);
+            
         } break;
         default:
             break;
@@ -110,8 +129,10 @@
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    CGSize size = [[CCDirector sharedDirector] winSize];
+    NSLog(@"MOVE");
 
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    NSLog(@"MOVE");
     NSSet *allTouches = [event allTouches];
     if(_isPaused){
         return;
@@ -123,23 +144,11 @@
             UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
             CGPoint oldLoc =[self convertTouchToNodeSpace: touch];
             if(oldLoc.x > (size.width / 2) + CENTEROFFSET){
-
-                blueMouseBody->p = oldLoc;
-                blueMouseJoint = cpPivotJointNew2(blueMouseBody, _blueHeldMallets.body, cpvzero, cpvzero);
-                blueMouseJoint->maxForce = 10000.0f;
-                blueMouseJoint->errorBias = cpfpow(1.0f - 0.15f, 60.0f);
-                cpSpaceAddConstraint(self.spaceManager.space, blueMouseJoint);
+                _blueMouseBody->p = oldLoc;
             }else if(oldLoc.x < (size.width / 2) - CENTEROFFSET){
-
-                redMouseBody->p = oldLoc;
-                redMouseJoint = cpPivotJointNew2(redMouseBody, _redHeldMallets.body, cpvzero, cpvzero);
-                redMouseJoint->maxForce = 10000.0f;
-                redMouseJoint->errorBias = cpfpow(1.0f - 0.15f, 60.0f);
-                cpSpaceAddConstraint(self.spaceManager.space, redMouseJoint);
-                
-                
+                _redMouseBody->p = oldLoc;
             }
-
+            
             
         }break;
         case 2: { //Double Touch
@@ -147,32 +156,29 @@
             UITouch *t2 = [[allTouches allObjects] objectAtIndex:1];
             CGPoint p1=[self convertTouchToNodeSpace: t1];
             CGPoint p2=[self convertTouchToNodeSpace: t2];
-            if(p1.x > (size.width / 2) + CENTEROFFSET){
-                redMouseBody->p = p2;
-                blueMouseBody->p = p1;
-            }else if(p1.x < (size.width / 2) - CENTEROFFSET){
-                redMouseBody->p = p1;
-                blueMouseBody->p = p2;
-
+            if(p1.x > (size.width / 2) + CENTEROFFSET && p2.x < (size.width / 2) - CENTEROFFSET){
+                _redMouseBody->p = p2;
+                _blueMouseBody->p = p1;
+            }else if(p1.x < (size.width / 2) - CENTEROFFSET && p2.x > (size.width / 2) + CENTEROFFSET){
+                _redMouseBody->p = p1;
+                _blueMouseBody->p = p2;
+                
+            }else if(p1.x < (size.width / 2) - CENTEROFFSET && p2.x < (size.width / 2) - CENTEROFFSET){
+                _redMouseBody->p = p1.x >= p2.x ? p2:p1;
+            }else if(p1.x > (size.width / 2) + CENTEROFFSET && p2.x > (size.width / 2) + CENTEROFFSET){
+                _blueMouseBody->p = p1.x >= p2.x ? p1:p2;
             }
-            redMouseJoint = cpPivotJointNew2(redMouseBody, _redHeldMallets.body, cpvzero, cpvzero);
-            redMouseJoint->maxForce = 10000.0f;
-            redMouseJoint->errorBias = cpfpow(1.0f - 0.15f, 60.0f);
-            cpSpaceAddConstraint(self.spaceManager.space, redMouseJoint);
-            blueMouseJoint = cpPivotJointNew2(blueMouseBody, _blueHeldMallets.body, cpvzero, cpvzero);
-            blueMouseJoint->maxForce = 10000.0f;
-            blueMouseJoint->errorBias = cpfpow(1.0f - 0.15f, 60.0f);
-            cpSpaceAddConstraint(self.spaceManager.space, blueMouseJoint);
-
+            
         } break;
         default:
             break;
     }
-    
+
 }
 
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+        NSLog(@"End");
         cpBodyResetForces(_redHeldMallets.body);
             cpBodyResetForces(_blueHeldMallets.body);
             cpBodySetVel(_redHeldMallets.body, ccp(0, 0));
@@ -201,7 +207,14 @@
     [self.spaceManager addBody:_blueHeldMallets.body];
     _blueHeldMallets.position = ccp(_winSize.width - 40,_winSize.height/2);
     _blueHeldMallets.shape->collision_type = HELD_MALLET;
-        _blueHeldMallets.zOrder = 2;
+    _blueHeldMallets.zOrder = 2;
+    _blueMouseBody->p = _blueHeldMallets.position;
+
+    blueMouseJoint = cpPivotJointNew2(_blueMouseBody, _blueHeldMallets.body, cpvzero, cpvzero);
+    
+    blueMouseJoint->maxForce = 1000000.0f;
+    blueMouseJoint->errorBias = cpfpow(1.0f - 0.37f, 60.0f);
+    cpSpaceAddConstraint(self.spaceManager.space, blueMouseJoint);
 }
 
 -(void)initRedHeldMalletsWithSprite:(cpCCSprite*)ballSprite {
@@ -213,6 +226,12 @@
     _redHeldMallets.position = ccp(40,_winSize.height/2);
     _redHeldMallets.shape->collision_type = HELD_MALLET;
         _redHeldMallets.zOrder = 2;
+    _redMouseBody->p = _redHeldMallets.position;
+    redMouseJoint = cpPivotJointNew2(_redMouseBody, _redHeldMallets.body, cpvzero, cpvzero);
+    redMouseJoint->maxForce = 1000000.0f;
+    redMouseJoint->errorBias = cpfpow(1.0f - 0.37f, 60.0f);
+    cpSpaceAddConstraint(self.spaceManager.space, redMouseJoint);
+
 
 }
 
@@ -242,7 +261,8 @@
     _puck.position = initailPosition;
     _blueHeldMallets.position = ccp(_winSize.width - 40,_winSize.height/2);
     _redHeldMallets.position = ccp(40,_winSize.height/2);
-
+    _blueMouseBody->p = _blueHeldMallets.position;
+    _redMouseBody->p = _redHeldMallets.position;
 
 }
 
@@ -297,7 +317,7 @@
     
     [self.spaceManager addCollisionCallbackBetweenType:HELD_MALLET otherType:PUCK target:self selector:@selector(handleCollisionWithCircle:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
     [self.spaceManager addCollisionCallbackBetweenType:GOAL otherType:PUCK target:self selector:@selector(handleCollisionWithShape:arbiter:space:) moments:COLLISION_PRESOLVE, nil];
-    [self addChild:[self.spaceManager createDebugLayer]];
+//    [self addChild:[self.spaceManager createDebugLayer]];
 
     [self.spaceManager start];
     
@@ -308,6 +328,7 @@
 //    cpVect vel = ccp(_puck.body->v.x, _puck.body->v.y );
 //    if(vel.x > FLT_MIN && vel.y > FLT_MIN){
 //        cpBodySetVel(_puck.body, ccp(vel.x -4, vel.y - 4));
+//
 //    }
     cpBodySetAngVel(_redHeldMallets.body, 0);
     cpBodySetAngVel(_blueHeldMallets.body, 0);
@@ -342,7 +363,7 @@
     float velocity = sqrtf(powf(auxB.x, 2) + powf(auxB.y, 2));
 //    float nomaelVel = 30000/(velocity + 1);
     
-    result = ccp(result.x * 4000, result.y* 4000);
+//    result = ccp(result.x * 5000, result.y* 5000);
     [_puck applyImpulse:result];
 
 //        NSLog(@"PUCK Velocity in X = %f in Y = %f",auxB.x, auxB.y);

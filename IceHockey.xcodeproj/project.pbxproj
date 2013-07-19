@@ -224,6 +224,7 @@
 		A724DDAE1783448E00717010 /* initial_board-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DDAB1783448E00717010 /* initial_board-hd.png */; };
 		A724DDAF1783448E00717010 /* initial_board.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DDAC1783448E00717010 /* initial_board.png */; };
 		A724DDB01783448E00717010 /* restartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A724DDAD1783448E00717010 /* restartButton.png */; };
+		A749D4AF1799BC0F00A5A48A /* board-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A749D4AE1799BC0F00A5A48A /* board-ipad.png */; };
 		A74DF043177A499D00FDD138 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A74DF042177A499D00FDD138 /* MainScene.m */; };
 		A74DF069177A58FC00FDD138 /* boton.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF068177A58FC00FDD138 /* boton.png */; };
 		A74DF06C177A683700FDD138 /* boton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A74DF06B177A683700FDD138 /* boton_pressed.png */; };
@@ -668,6 +669,7 @@
 		A724DDAB1783448E00717010 /* initial_board-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "initial_board-hd.png"; path = "Resources/initial_board-hd.png"; sourceTree = "<group>"; };
 		A724DDAC1783448E00717010 /* initial_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = initial_board.png; path = Resources/initial_board.png; sourceTree = "<group>"; };
 		A724DDAD1783448E00717010 /* restartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = restartButton.png; path = Resources/restartButton.png; sourceTree = "<group>"; };
+		A749D4AE1799BC0F00A5A48A /* board-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "board-ipad.png"; path = "Resources/board-ipad.png"; sourceTree = "<group>"; };
 		A74DF041177A499D00FDD138 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
 		A74DF042177A499D00FDD138 /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
 		A74DF068177A58FC00FDD138 /* boton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boton.png; path = Resources/boton.png; sourceTree = "<group>"; };
@@ -765,6 +767,7 @@
 		84AB5AEC176826B0007B0B16 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A749D4AE1799BC0F00A5A48A /* board-ipad.png */,
 				A724DDAB1783448E00717010 /* initial_board-hd.png */,
 				A724DDAC1783448E00717010 /* initial_board.png */,
 				A724DDAD1783448E00717010 /* restartButton.png */,
@@ -1563,6 +1566,7 @@
 				A724DDAE1783448E00717010 /* initial_board-hd.png in Resources */,
 				A724DDAF1783448E00717010 /* initial_board.png in Resources */,
 				A724DDB01783448E00717010 /* restartButton.png in Resources */,
+				A749D4AF1799BC0F00A5A48A /* board-ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

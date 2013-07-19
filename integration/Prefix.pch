@@ -17,7 +17,7 @@
 #define BOARD 4
 #define BLUEPLAYER 5
 #define REDPLAYER 6
-#define MAXVEL 400
+#define MAXVEL 700
 #define INITIALOFFSET 100
 #define SCORETOWIN 7
 #define CENTEROFFSET 20

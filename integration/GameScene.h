@@ -33,8 +33,8 @@
     int redScore;
     BOOL _isPaused;
 
-    cpBody *redMouseBody;
-    cpBody *blueMouseBody;
+    cpBody *_redMouseBody;
+    cpBody *_blueMouseBody;
     cpConstraint *redMouseJoint;
     cpConstraint *blueMouseJoint;
     
